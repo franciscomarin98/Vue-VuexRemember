@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapState, mapActions} from "vuex";
 
 export default {
     name: "Counter",
@@ -24,7 +24,7 @@ export default {
         // },
         ...mapState(['counter', 'lastMutation']),
         // ...mapState[{
-        //     counter: state => state.counter,
+        //     counter: 'counter',
         //     lastMutation: state => state.lastMutation
         // }]
     },
@@ -38,9 +38,9 @@ export default {
         decrement() {
             this.$store.commit('DECREMENT')
         },
-        incrementRandom() {
-            this.$store.dispatch('incrementRandomInt')
-        }
+        ...mapActions({
+            incrementRandom: 'incrementRandomInt'
+        })
     },
 }
 </script>
