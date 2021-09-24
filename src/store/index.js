@@ -7,7 +7,7 @@ const store = createStore({
         return {
             counter: 0,
             lastMutation: 'none',
-            isLoading: true,
+            isLoading: false,
             lastRandomInt: 0
         }
     },
@@ -24,12 +24,18 @@ const store = createStore({
         DECREMENT(state) {
             state.counter--
             state.lastMutation = 'DECREMENT'
+        },
+        SETLOADING(state) {
+            state.isLoading = !state.isLoading
+            state.lastMutation = 'SET-LOADING'
         }
     },
     actions: { //Síncronas y Asíncronas
         async incrementRandomInt({commit}) {
+            commit('SETLOADING')
             const randomNumber = await getRandomInt()
             commit('INCREMENTBYARGUMENT', randomNumber)
+            commit('SETLOADING')
         }
     }
 })

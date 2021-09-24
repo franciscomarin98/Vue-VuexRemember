@@ -5,7 +5,7 @@
 
     <button @click="increment">+1</button>
     <button @click="incrementByArgument">+5</button>
-    <button @click="incrementRandom">rdn+</button>
+    <button @click="incrementRandom" :disabled="isLoading">rdn+</button>
     <button @click="decrement">-1</button>
 
 
@@ -22,7 +22,7 @@ export default {
         // counter() {
         //     return this.$store.state.counter;
         // },
-        ...mapState(['counter', 'lastMutation']),
+        ...mapState(['counter', 'lastMutation', 'isLoading']),
         // ...mapState[{
         //     counter: 'counter',
         //     lastMutation: state => state.lastMutation
