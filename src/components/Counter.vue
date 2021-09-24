@@ -5,6 +5,7 @@
 
     <button @click="increment">+1</button>
     <button @click="incrementByArgument">+5</button>
+    <button @click="incrementRandom">rdn+</button>
     <button @click="decrement">-1</button>
 
 
@@ -36,6 +37,9 @@ export default {
         },
         decrement() {
             this.$store.commit('DECREMENT')
+        },
+        incrementRandom() {
+            this.$store.dispatch('incrementRandomInt')
         }
     },
 }
