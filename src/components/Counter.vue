@@ -1,6 +1,6 @@
 <template>
     <h1>Counter - Vuex</h1>
-    <h2>Direct access: {{ $store.state.counter }}</h2>
+    <h2>Direct access: {{ $store.state.counter.counter }}</h2>
     <h2>Computed: {{ counter }}</h2>
 
     <button @click="increment">+1</button>
@@ -12,7 +12,7 @@
     <h2>mapState: {{ counter }}</h2>
     <h2>lastMutation: {{ lastMutation }}</h2>
 
-    <h2>Direct getter: {{$store.getters.squareCount}}</h2>
+    <h2>Direct getter: {{$store.getters['counter/squareCount']}}</h2>
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
         // counter() {
         //     return this.$store.state.counter;
         // },
-        ...mapState(['counter', 'lastMutation', 'isLoading']),
+        ...mapState('counter',['counter', 'lastMutation', 'isLoading']),
         // ...mapState[{
         //     counter: 'counter',
         //     lastMutation: state => state.lastMutation
@@ -32,21 +32,17 @@ export default {
     },
     methods: {
         increment() {
-            this.$store.commit('INCREMENT')
+            this.$store.commit('counter/INCREMENT')
         },
         incrementByArgument() {
-            this.$store.commit('INCREMENTBYARGUMENT', 5)
+            this.$store.commit('counter/INCREMENTBYARGUMENT', 5)
         },
         decrement() {
-            this.$store.commit('DECREMENT')
+            this.$store.commit('counter/DECREMENT')
         },
-        ...mapActions({
+        ...mapActions('counter',{
             incrementRandom: 'incrementRandomInt'
         })
     },
 }
 </script>
-
-<style scoped>
-
-</style>
