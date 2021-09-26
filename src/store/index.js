@@ -37,6 +37,11 @@ const store = createStore({
             commit('INCREMENTBYARGUMENT', randomNumber)
             commit('SETLOADING')
         }
+    },
+    getters: {
+        squareCount(state) {
+            return state.counter * state.counter;
+        }
     }
 })
 
